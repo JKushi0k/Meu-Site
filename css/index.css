@@ -1,0 +1,79 @@
+:root{
+    /* Varaveis principais */
+    --backgroundPrincipal-color: #00082E;
+    --backgroundHeader-color:    #03071b;
+    --backgroundSidebar-color:   #1632aa;
+    --corParaTextos-color:       #fff;
+    --hoverParaTexto-color:      #5271FF;
+    --hoverParaIcone-color:      #2CE8F5;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilização Principal */
+body{
+    background-color: var(--backgroundPrincipal-color);
+    font-size: 1.5rem;
+    color: var(--corParaTextos-color);
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilização do Header */
+header{
+    background-color: var(--backgroundHeader-color);
+    box-shadow: 1px 1px 4px var(--corParaTextos-color);
+    width: 100dvw;
+    height: 3dvw;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+header > figure.logo{
+    width: 5rem
+}
+
+header > figure.logo > img{
+    width: 5rem;
+}
+
+header > nav{
+    position: absolute;
+    top: 1.2rem;
+    left: 5rem;
+}
+
+header > nav > a{
+    color: var(--corParaTextos-color);
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    bottom: .5rem;
+}
+
+.clicado{
+    color: var(--hoverParaTexto-color);
+}
+
+header > figure.user{
+    width: 5rem;
+}
+
+header > figure.user > img{
+    width: 5rem;
+    position: absolute;
+    right: .5rem;
+}
+
+/* Estilização da Sidebar */
+nav.sidebar{
+    width: 300px;
+    height: 100%;
+    background-color: var(--backgroundSidebar-color);
+    padding: 40px 0 40px 1%;
+}
