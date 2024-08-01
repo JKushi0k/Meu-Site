@@ -1,11 +1,17 @@
 :root{
-    /* Varaveis principais */
+    /* Variaveis principais */
     --backgroundPrincipal-color: #00082E;
     --backgroundHeader-color:    #03071b;
-    --backgroundSidebar-color:   #1632aa;
+    --backgroundSidebar-color:   #1a3199;
     --corParaTextos-color:       #fff;
     --hoverParaTexto-color:      #5271FF;
     --hoverParaIcone-color:      #2CE8F5;
+
+    /* Variaveis secundarias */
+    --metaverde-color:    #C1FF72;
+    --metavermelho-color: #FF3131;
+    --comentario-color:   #260668;
+    --gradientButton-color: linear-gradient(90deg, #000000, #3533CD)
 }
 
 *{
@@ -20,6 +26,8 @@ body{
     color: var(--corParaTextos-color);
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    width: 100vw;
+    height: 100vh;
 }
 
 /* Estilização do Header */
@@ -28,9 +36,10 @@ header{
     box-shadow: 1px 1px 4px var(--corParaTextos-color);
     width: 100dvw;
     height: 3dvw;
-    position: relative;
+    position: fixed;
     display: flex;
     flex-wrap: wrap;
+    z-index: 1;
 }
 
 header > figure.logo{
@@ -72,8 +81,161 @@ header > figure.user > img{
 
 /* Estilização da Sidebar */
 nav.sidebar{
-    width: 300px;
+    width: 80px;
     height: 100%;
     background-color: var(--backgroundSidebar-color);
     padding: 40px 0 40px 1%;
+    box-shadow: 3px 0 0 var(--hoverParaIcone-color);
+    position: fixed;
+    top: 3.6rem;
+    left: 0;
+    overflow: hidden;
+    transition: .3s;
+    z-index: 1;
+}
+
+nav.sidebar:hover{
+    width: 300px;
+}
+
+nav.sidebar > div.btn-expandir{
+    width: 20%;
+    padding-left: 10px;
+}
+
+nav.sidebar > div.btn-expandir > svg{
+    color: var(--corParaTextos-color);
+    width: 2.5rem;
+    cursor: pointer;
+}
+
+nav.sidebar > ul{
+    height: 100%;
+    list-style-type: none;
+}
+
+nav.sidebar > ul > li.item-menu{
+    transition: .5s ease-in-out;
+}
+
+nav.sidebar > ul > li.item-menu:hover{
+    background-color: var(--hoverParaIcone-color);
+}
+
+nav.sidebar > ul > li.item-menu > a{
+    color: var(--corParaTextos-color);
+    text-decoration: none;
+    font-size: 20px;
+    padding: 20px 4%;
+    display: flex;
+    margin-bottom: 20px;
+    line-height: 50px;
+}
+
+nav.sidebar > ul > li.item-menu > a > span.icon > svg{
+    width: 3rem;
+    margin-left: 1rem;
+}
+
+nav.sidebar > ul > li.item-menu > a > span.txt-link{
+    margin-left: 40px;
+}
+
+/* Estilizando o Main */
+main{
+    width: 100vw;
+    height: 200vh;
+    position: relative;
+    top: 4rem;
+    z-index: 0;
+}
+
+
+main > p{
+    margin: 0 7rem;
+}
+
+main > figure > img{
+    border-radius: 1rem;
+    border: var(--corParaTextos-color) .2rem solid;
+    margin: 1rem 0;
+}
+
+main > p.p-meta{
+    color: var(--hoverParaTexto-color);
+}
+
+main > div.div-meta{
+    margin: 1rem 47rem;
+}
+
+main > div.div-meta > ol > li{
+    text-align: left;
+}
+
+.meta-conseguida{
+    color: var(--metaverde-color);
+}
+
+.meta-chegada{
+    color: var(--hoverParaTexto-color);
+}
+
+.meta-a-chegar{
+    color: var(--metavermelho-color);
+}
+
+main > label{
+    color: var(--hoverParaTexto-color);
+    display: block;
+    margin: 1rem 0 0 0;
+}
+
+main > input#commentary{
+    width: 30rem;
+    height: 2rem;
+    background-color: var(--backgroundSidebar-color);
+    border: none;
+    border-radius: .7rem;
+    color: var(--corParaTextos-color);
+    padding-left: 1rem;
+    margin-right: 1rem;
+    transition: .4s ease-in-out;
+}
+
+main > input#commentary:focus{
+    outline: none;
+    background-color: var(--backgroundHeader-color);
+    border: var(--corParaTextos-color) .1rem solid;
+}
+
+main > input#commentary:hover{
+    background-color: var(--backgroundHeader-color);
+    border: var(--corParaTextos-color) .1rem solid;
+}
+
+main > button{
+    width: 6rem;
+    height: 2rem;
+    background: var(--gradientButton-color);
+    color: var(--corParaTextos-color);
+    border: none;
+    border-radius: .5rem;
+    transition: .6s ease-in-out;
+}
+
+main > button:hover{
+    width: 8rem;
+    height: 3rem;
+}
+
+main > div.div-commentary{
+    width: 45rem;
+    height: 20rem;
+    border: var(--backgroundHeader-color) .4rem solid;
+    background-color: var(--comentario-color);
+    position: relative;
+    left: 37rem;
+    margin: 1rem 0 4rem 0;
+
 }
