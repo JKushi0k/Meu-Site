@@ -11,7 +11,8 @@
     --metaverde-color:    #C1FF72;
     --metavermelho-color: #FF3131;
     --comentario-color:   #260668;
-    --gradientButton-color: linear-gradient(90deg, #000000, #3533CD)
+    --gradientButton-color:  linear-gradient(90deg, #000000, #3533CD);
+    --gradientyoutube-color: linear-gradient(135deg, #ff0000, #ffffff);
 }
 
 *{
@@ -35,7 +36,7 @@ header{
     background-color: var(--backgroundHeader-color);
     box-shadow: 1px 1px 4px var(--corParaTextos-color);
     width: 100dvw;
-    height: 3dvw;
+    height: 6dvh;
     position: fixed;
     display: flex;
     flex-wrap: wrap;
@@ -144,7 +145,7 @@ nav.sidebar > ul > li.item-menu > a > span.txt-link{
 /* Estilizando o Main */
 main{
     width: 100vw;
-    height: 200vh;
+    height: 210vh;
     position: relative;
     top: 4rem;
     z-index: 0;
@@ -232,10 +233,108 @@ main > button:hover{
 main > div.div-commentary{
     width: 45rem;
     height: 20rem;
-    border: var(--backgroundHeader-color) .4rem solid;
+    border: var(--backgroundHeader-color) .8rem solid;
+    border-radius: 2rem;
     background-color: var(--comentario-color);
     position: relative;
-    left: 37rem;
+    left: 36rem;
     margin: 1rem 0 4rem 0;
+    padding: 1rem;
+    text-align: left;
+}
 
+main > div.div-vota{
+    margin: 1rem 40rem;
+    padding: 1rem 0;
+    background-color: var(--comentario-color);
+    border: var(--backgroundHeader-color) .8rem solid;
+}
+
+main > div.div-vota > h3{
+    color: var(--hoverParaTexto-color);
+}
+
+main > div.div-vota > p{
+    margin-top: 1rem;
+    text-align: left;
+}
+
+main > div.div-vota > p > input{
+    margin: 1rem;
+}
+
+main > p.p-youtube{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main > p.p-youtube > a{
+    color: var(--corParaTextos-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 3rem;
+    width: 20rem;
+}
+
+main > p.p-youtube > a > span{
+    transition: color .3s ease-in-out;
+}
+
+main > p.p-youtube > a > svg{
+    width: 3rem;
+    margin-right: 1rem;
+    transition: color .3s ease-in-out;
+}
+
+main > p.p-youtube > a:hover > span{
+    background: var(--gradientyoutube-color);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+main > p.p-youtube > a:hover > svg{
+    color: red;
+}
+
+main > div.div-nav{
+    position: fixed;
+    top: 25rem;
+    left: 120rem;
+}
+
+main > div.div-nav > svg{
+    width: 2rem;
+    position: absolute;
+    top: 2.5rem;
+    right: 12.5rem;
+}
+
+main > div.div-nav > nav{
+    background-color: var(--backgroundHeader-color);
+    width: 11rem;
+    height: 9rem;
+    position: absolute;
+    right: 1rem;
+    box-shadow: 1px 2px 6px var(--corParaTextos-color);
+}
+
+main > div.div-nav > nav > div{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-top: .9rem;
+}
+
+main > div.div-nav > nav > div > a{
+    color: var(--corParaTextos-color);
+    text-decoration: none;
+    transition: .3s ease-in-out;
+}
+
+main > div.div-nav > nav > div > a:hover{
+    color: var(--hoverParaTexto-color);
 }
