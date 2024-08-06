@@ -36,12 +36,16 @@ body{
 header{
     background-color: var(--backgroundHeader-color);
     box-shadow: 1px 1px 4px var(--corParaTextos-color);
-    width: 100%;
+    width: 100vw;
     height: 6dvh;
     position: fixed;
     display: flex;
     flex-wrap: wrap;
     z-index: 1;
+}
+
+header > svg.lista{
+    display: none;
 }
 
 header > figure.logo{
@@ -167,6 +171,10 @@ main > figure > img{
     border-radius: 1rem;
     border: var(--corParaTextos-color) .2rem solid;
     margin: 1rem 0;
+}
+
+main > figure > img.logo2{
+    display: none;
 }
 
 main > p.p-meta{
@@ -375,6 +383,10 @@ footer > hr.sociais{
     width: 9.5rem;
 }
 
+footer > div.share{
+    display: none;
+}
+
 footer > a{
     color: var(--corParaTextos-color);
     text-decoration: none;
@@ -555,6 +567,513 @@ footer > p.emblema > svg{
     margin-right: .5rem;
 }
 
+
+/* Smartphones pequenos (até 600px) */
 @media (max-width: 600px) {
+    header{
+        position: fixed;
+    }
     
+    header > svg.lista{
+        display: block;
+        width: 3rem;
+        margin-left: .5rem;
+        cursor: pointer;
+    }
+
+    header > nav{
+        position: absolute;
+        top: 1.2rem;
+        left: 9rem;
+    }
+
+    nav.sidebar{
+        display: none;
+        position: fixed;
+        top: 3.9rem;
+    }
+
+    nav.sidebar > div.btn-expandir{
+        display: none;
+    }
+
+    main{
+        height: 230vh;
+    }
+
+    main > figure > img{
+        width: 36rem;
+    }
+
+    main > figure > img.logo1{
+        display: none;
+    }
+
+    main > figure > img.logo2{
+        display: block;
+        margin-left: .5rem;
+    }
+
+    main > div.div-meta{
+        margin: 1rem 7rem;
+    }
+    
+    main > input#commentary{
+        width: 25rem;
+    }
+
+    main > div.div-commentary{
+        position: relative;
+        left: 2rem;
+        width: 30rem;
+    }
+
+    main > div.div-vota{
+        margin: 1rem 0rem;
+    }
+
+    main > div.div-nav{
+        left: 38.5rem;
+    }
+    
+    footer{
+        font-size: 1.2rem;
+    }
+
+    footer > p.redes{
+        left: 4rem;
+    }
+
+    footer > hr.sociais{
+        left: 3.9rem;
+        width: 7.7rem;
+    }
+
+    footer > div.share{
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        position: absolute;
+        top: 3rem;
+        left: 6rem;
+        background-color: var(--corParaTextos-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    footer > div.share > svg{
+        color: #000000;
+        width: 2rem;
+    }
+    
+    footer > a.yt{
+        position: absolute;
+        top: 2rem;
+        left: .4rem;
+        transition: .2s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.yt:hover{
+        color: var(--metavermelho-color);
+        display: none;
+    }
+    
+    footer > a.dc{
+        position: absolute;
+        top: 5rem;
+        left: 9rem;
+        transition: .2s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.dc:hover{
+        color: var(--hoverParaTexto-color);
+        display: none;
+    }
+    
+    footer > a.it{
+        position: absolute;
+        top: 2rem;
+        left: 23rem;
+        display: none;
+    }
+    
+    footer > a.it > span{
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: background 0.3s ease;
+        display: none;
+    }
+    
+    footer > a.it:hover > span{
+        background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        display: none;
+    }
+    
+    .insta{
+        fill: currentColor;
+        transition:.3s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.it:hover .insta{
+        fill: url(#instagram);
+        display: none;
+    }
+    
+    footer > a.ttk{
+        position: absolute;
+        top: 5rem;
+        left: 23rem;
+        display: none;
+    }
+    
+    footer > a.ttk > span{
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: 0.3s ease;
+        display: none;
+    }
+    
+    footer > a.ttk:hover > span{
+        background: linear-gradient(45deg, #00f2ea, #ff0050);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        display: none;
+    }
+    
+    .tiktok{
+        fill: currentColor;
+        transition: fill .3s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.ttk:hover .tiktok{
+        fill: url(#tik);
+        display: none;
+    }
+    
+    footer > a.tw{
+        position: absolute;
+        top: 3.8rem;
+        left: 33rem;
+        transition: .2s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.tw:hover{
+        color: rgb(131, 18, 131);
+        display: none;
+    }
+    
+    .separar{
+        width: 7rem;
+        top: 4rem;
+        left: 10rem;
+    }
+    
+    footer > p.dev{
+        right: 4rem;
+    }
+    
+    footer > hr.dev-linha{
+        top: 1.5rem;
+        left: 20rem;
+        width: 13.5rem;
+    }
+    
+    footer > p.dev-icon{
+        right: 3.5rem;
+    }
+    
+    footer > p.dev-icon > svg{
+        width: 2rem;
+        margin-right: .5rem;
+    }
+
+    .separar-2{
+        display: none;
+    }
+    
+    footer > p.data{
+        left: 0rem;
+        top: 6.6rem;
+    }
+    
+    footer > p.atual{
+        top: 6.6rem;
+        right: .5rem;
+    }
+    
+    footer > p.emblema{
+        top: 7.5rem;
+    }
+    
+    footer > p.emblema > svg{
+        width: 1.5rem;
+    }
+}
+
+/* Dispositivos móveis médios (601px a 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+    header{
+        position: fixed;
+    }
+    
+    header > svg.lista{
+        display: block;
+        width: 3rem;
+        margin-left: .5rem;
+        cursor: pointer;
+    }
+
+    header > nav{
+        position: absolute;
+        top: 1.2rem;
+        left: 9rem;
+    }
+
+    nav.sidebar{
+        display: none;
+        position: fixed;
+        top: 3.9rem;
+    }
+
+    nav.sidebar > div.btn-expandir{
+        display: none;
+    }
+
+    main{
+        height: 260vh;
+    }
+
+    main > figure > img{
+        width: 36rem;
+    }
+
+    main > figure > img.logo1{
+        display: none;
+    }
+
+    main > figure > img.logo2{
+        display: block;
+        margin-left: .5rem;
+    }
+
+    main > div.div-meta{
+        margin: 1rem 7rem;
+    }
+    
+    main > input#commentary{
+        width: 25rem;
+    }
+
+    main > div.div-commentary{
+        position: relative;
+        left: 2rem;
+        width: 30rem;
+    }
+
+    main > div.div-vota{
+        margin: 1rem 0rem;
+    }
+
+    main > div.div-nav{
+        left: 38.6rem;
+    }
+    
+    footer{
+        font-size: 1.2rem;
+    }
+
+    footer > p.redes{
+        left: 4rem;
+    }
+
+    footer > hr.sociais{
+        left: 3.9rem;
+        width: 7.7rem;
+    }
+
+    footer > div.share{
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        position: absolute;
+        top: 3rem;
+        left: 6rem;
+        background-color: var(--corParaTextos-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    footer > div.share > svg{
+        color: #000000;
+        width: 2rem;
+    }
+    
+    footer > a.yt{
+        position: absolute;
+        top: 2rem;
+        left: .4rem;
+        transition: .2s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.yt:hover{
+        color: var(--metavermelho-color);
+        display: none;
+    }
+    
+    footer > a.dc{
+        position: absolute;
+        top: 5rem;
+        left: 9rem;
+        transition: .2s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.dc:hover{
+        color: var(--hoverParaTexto-color);
+        display: none;
+    }
+    
+    footer > a.it{
+        position: absolute;
+        top: 2rem;
+        left: 23rem;
+        display: none;
+    }
+    
+    footer > a.it > span{
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: background 0.3s ease;
+        display: none;
+    }
+    
+    footer > a.it:hover > span{
+        background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        display: none;
+    }
+    
+    .insta{
+        fill: currentColor;
+        transition:.3s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.it:hover .insta{
+        fill: url(#instagram);
+        display: none;
+    }
+    
+    footer > a.ttk{
+        position: absolute;
+        top: 5rem;
+        left: 23rem;
+        display: none;
+    }
+    
+    footer > a.ttk > span{
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: 0.3s ease;
+        display: none;
+    }
+    
+    footer > a.ttk:hover > span{
+        background: linear-gradient(45deg, #00f2ea, #ff0050);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        display: none;
+    }
+    
+    .tiktok{
+        fill: currentColor;
+        transition: fill .3s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.ttk:hover .tiktok{
+        fill: url(#tik);
+        display: none;
+    }
+    
+    footer > a.tw{
+        position: absolute;
+        top: 3.8rem;
+        left: 33rem;
+        transition: .2s ease-in-out;
+        display: none;
+    }
+    
+    footer > a.tw:hover{
+        color: rgb(131, 18, 131);
+        display: none;
+    }
+    
+    .separar{
+        width: 7rem;
+        top: 4rem;
+        left: 10rem;
+    }
+    
+    footer > p.dev{
+        right: 4rem;
+    }
+    
+    footer > hr.dev-linha{
+        top: 1.5rem;
+        left: 20rem;
+        width: 13.5rem;
+    }
+    
+    footer > p.dev-icon{
+        right: 3.5rem;
+    }
+    
+    footer > p.dev-icon > svg{
+        width: 2rem;
+        margin-right: .5rem;
+    }
+
+    .separar-2{
+        display: none;
+    }
+    
+    footer > p.data{
+        left: 0rem;
+        top: 6.6rem;
+    }
+    
+    footer > p.atual{
+        top: 6.6rem;
+        right: .5rem;
+    }
+    
+    footer > p.emblema{
+        top: 7.5rem;
+    }
+    
+    footer > p.emblema > svg{
+        width: 1.5rem;
+    }
 }
