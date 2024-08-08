@@ -36,7 +36,7 @@ body{
 header{
     background-color: var(--backgroundHeader-color);
     box-shadow: 1px 1px 4px var(--corParaTextos-color);
-    width: 100vw;
+    width: 100%;
     height: 6dvh;
     position: fixed;
     display: flex;
@@ -150,7 +150,7 @@ nav.sidebar > ul > li.item-menu > a > span.txt-link{
 /* Estilizando o Main */
 main{
     width: 100vw;
-    height: 190vh;
+    height: auto;
     position: relative;
     top: 4rem;
     z-index: 0;
@@ -182,7 +182,7 @@ main > p.p-meta{
 }
 
 main > div.div-meta{
-    margin: 1rem auto;
+    margin: 1rem 0 1rem 40rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -287,8 +287,12 @@ main > div.div-vota > p > input{
 
 main > p.p-youtube{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    padding: 1rem 0 4rem 0;
+    margin: 1rem auto;
+    max-width: 90%;
 }
 
 main > p.p-youtube > a{
@@ -375,20 +379,13 @@ footer{
     align-items: center;
     position: relative;
     z-index: 0;
-    padding: 3.5rem;
+    padding: 1rem;
 }
 
 footer > p.redes{
     position: relative;
-    bottom: 4.3rem;
-    right: 7.4rem;
-}
-
-footer > hr.sociais{
-    position: relative;
-    bottom: 3.5rem;
-    right: 17rem;
-    width: 8%;
+    bottom: 2rem;
+    left: 23rem;
 }
 
 footer > div.share{
@@ -420,8 +417,8 @@ footer > a.yt, footer > a.dc, footer > a.it, footer > a.ttk, footer > a.tw {
 }
 
 footer > a.yt{
-    top: -2rem;
-    left: -40rem;
+    top: 0rem;
+    right: 4rem;
     transition: .2s ease-in-out;
 }
 
@@ -430,8 +427,8 @@ footer > a.yt:hover{
 }
 
 footer > a.dc{
-    top: 1rem;
-    left: -54rem;
+    top: 2rem;
+    right: 18rem;
     transition: .2s ease-in-out;
 }
 
@@ -440,8 +437,8 @@ footer > a.dc:hover{
 }
 
 footer > a.it{
-    top: -2rem;
-    left: -51rem;
+    top: 0rem;
+    right: 15rem;
 }
 
 footer > a.it > span{
@@ -468,8 +465,8 @@ footer > a.it:hover .insta{
 }
 
 footer > a.ttk{
-    top: 1rem;
-    left: -61.5rem;
+    top: 2.2rem;
+    right: 25.5rem;
 }
 
 footer > a.ttk > span{
@@ -496,8 +493,8 @@ footer > a.ttk:hover .tiktok{
 }
 
 footer > a.tw{
-    top: -0rem;
-    left: -60rem;
+    top: 1.5rem;
+    right: 24rem;
     transition: .2s ease-in-out;
 }
 
@@ -505,32 +502,36 @@ footer > a.tw:hover{
     color: rgb(131, 18, 131);
 }
 
-.separar{
-    position: absolute;
+footer > .separar, footer > .separar-2 {
     transform: rotate(-45deg);
-    top: calc(0rem + 9vh);
-    left: calc(0rem + 33vw);
-    width: calc(11rem + 0vw);
+    width: 10%; /* Ajusta a largura para 50% da largura do footer */
+    position: absolute;
+}
+
+.separar{
+    top: 5rem;
+    left: 40rem;
+}
+
+.separar-2{
+    top: 5rem;
+    left: 70rem;
 }
 
 footer > p.dev{
-    position: absolute;
-    top: 0;
-}
-
-footer > hr.dev-linha{
-    position: absolute;
-    top: calc(0rem + 2.5vh);
-    left: calc(0rem + 43vw);
-    width: calc(16.5rem + 0vw);
+    position: relative;
+    bottom: 2rem;
+    right: 7rem;
+    margin: 1rem 0;
 }
 
 footer > p.dev-icon{
-    position: absolute;
-    top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    bottom: 0rem;
+    right: 24rem;
 }
 
 footer > p.dev-icon > svg{
@@ -538,39 +539,173 @@ footer > p.dev-icon > svg{
     margin-right: .5rem;
 }
 
-.separar-2{
-    position: absolute;
-    transform: rotate(-45deg);
-    top: calc(0rem + 9vh);
-    left: calc(0rem + 55vw);
-    width: calc(11rem + 0vw);
+footer > p.data, footer > p.atual {
+    position: relative; /* Remove o posicionamento absoluto para ajuste automático com flexbox */
+    margin: 1rem 0;
 }
 
 footer > p.data{
-    position: absolute;
-    top: 2rem;
-    right: 17rem;
+    bottom: 0rem;
+    right: 10rem;
 }
 
 footer > p.atual{
-    position: absolute;
-    top: 4rem;
-    right: 19.6rem;
+    bottom: 2rem;
+    left: 40.2rem;
 }
 
-footer > p.emblema{
+footer > p.emblema {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
     justify-content: center;
-    position: absolute;
-    top: 7.2rem;
-    right: 1.5rem;
     font-size: 1rem;
     line-height: 2rem;
+    position: relative;
+    top: 1.5rem;
+    left: 43rem;
 }
 
-footer > p.emblema > svg{
+footer > p.emblema > svg {
     width: 2rem;
     margin-right: .5rem;
+}
+
+@media screen and (max-width: 1615px) {
+    header{
+        height: 8dvh;
+    }
+
+    header > svg.lista{
+        display: block;
+        width: 3rem;
+        position: relative;
+        left: 1rem;
+    }
+
+    header > nav {
+        left: 8rem;
+    }
+
+    header > figure.user{
+        margin: -.2rem 0;
+    }
+
+    nav.sidebar{
+        display: none;
+    }
+
+    nav.sidebar > div.btn-expandir{
+        display: none;
+    }
+
+    main > div.anchor{
+        height: 2dvh;
+    }
+
+    main > p{
+        margin: 0 0;
+    }
+    
+    main > figure > img.logo1{
+        display: none;
+    }
+
+    main > figure > img.logo2{
+        display: none;
+    }
+
+    main > div.div-meta{
+        font-size: 1rem;
+        margin: 1rem 0 0 5rem;
+    }
+
+    main > input#commentary{
+        width: 15rem;
+    }
+
+    main > p.p-youtube{
+        padding: 1rem 0 4rem 0;
+    }
+
+    main > div.div-nav{
+        top: calc(100vh - 75%); /* Ajuste conforme necessário */
+        left: calc(100vw - -4%); /* Ajuste conforme necessário */
+    }
+
+    footer{
+        font-size: 1rem;
+        padding: 1rem 0 2.5rem 0;
+    }
+
+    footer > p.redes{
+        bottom: 1.8rem;
+        left: -1.5rem;
+    }
+
+    footer > div.share{
+        display: none;
+    }
+    
+    footer > a > svg{
+        width: 1.9rem;
+    }
+    
+    footer > a.yt{
+        top: 0rem;
+        right: 8.5rem;
+    }
+    
+    footer > a.dc{
+        top: -.5rem;
+        right: 1.7rem;
+    }
+    
+    footer > a.it{
+        top: 2rem;
+        right: 12.7rem;
+    }
+    
+    footer > a.ttk{
+        top: 1.5rem;
+        right: 3.7rem;
+    }
+    
+    footer > a.tw{
+        top: 4rem;
+        right: 12rem;
+    }
+    
+    footer > .separar, footer > .separar-2 {
+        display: none;
+    }
+    footer > p.dev{
+        bottom: -4rem;
+        right: -.5rem;
+    }
+    
+    footer > p.dev-icon{
+        bottom: -6rem;
+        right: 10.5rem;
+    }
+    
+    footer > p.dev-icon > svg{
+        width: 2rem;
+        margin-right: .5rem;
+    }
+    
+    footer > p.data{
+        bottom: -5rem;
+        right: 4rem;
+    }
+    
+    footer > p.atual{
+        bottom: -3rem;
+        left: -1.5rem;
+    }
+    
+    footer > p.emblema {
+        top: 3rem;
+        left: 1.5rem;
+    }
 }
