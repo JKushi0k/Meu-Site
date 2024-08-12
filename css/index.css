@@ -373,26 +373,24 @@ footer{
     box-shadow: 0rem -.3rem .4rem var(--corParaTextos-color);
     width: 100%;
     height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     position: relative;
     z-index: 0;
     padding: 1rem;
+    margin: 1rem auto;
 }
 
 footer > p.redes{
     position: relative;
-    bottom: 2rem;
-    left: 23rem;
+    bottom: 1rem;
+    padding: 0 60rem 0 0;
+    margin: 0 0 0 5.4rem;
 }
 
 footer > div.share{
     display: none;
 }
 
-footer > a{
+footer > div > a{
     color: var(--corParaTextos-color);
     text-decoration: none;
     font-size: 1rem;
@@ -402,52 +400,64 @@ footer > a{
     margin: .5rem;
 }
 
-footer > a > svg{
+footer > div > a > svg{
     width: 2rem;
     margin-right: .5rem;
 }
 
-footer > a > span{
+footer > div > a > span{
     position: relative;
     top: .3rem;
 }
 
-footer > a.yt, footer > a.dc, footer > a.it, footer > a.ttk, footer > a.tw {
-    position: relative; /* Remove o posicionamento absoluto para ajuste automático com flexbox */
+footer > div.yt, footer > div.dc, footer > div.it, footer > div.ttk, footer > div.tw {
+    position: absolute;
 }
 
-footer > a.yt{
-    top: 0rem;
-    right: 4rem;
+footer > div.yt{
+    top: 1rem;
+    margin: 0 0 0 5.4rem;
+}
+
+footer > div.yt > a{
     transition: .2s ease-in-out;
 }
 
-footer > a.yt:hover{
+footer > div.yt > a:hover{
     color: var(--metavermelho-color);
 }
 
-footer > a.dc{
-    top: 2rem;
-    right: 18rem;
+footer > div.dc{
+    top: 3rem;
+    margin: 0 0 0 5.4rem;
+}
+
+footer > div.dc > a{
     transition: .2s ease-in-out;
 }
 
-footer > a.dc:hover{
+footer > div.dc > a:hover{
     color: var(--hoverParaTexto-color);
 }
 
-footer > a.it{
+footer > div.it{
+    top: 1rem;
+    left: 20rem;
+    margin: 0 0 0 0;
+}
+
+footer > div.it > a{
     top: 0rem;
     right: 15rem;
 }
 
-footer > a.it > span{
+footer > div.it > a > span{
     -webkit-background-clip: text;
     background-clip: text;
     transition: background 0.3s ease;
 }
 
-footer > a.it:hover > span{
+footer > div.it > a:hover > span{
     background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
     -webkit-background-clip: text;
     background-clip: text;
@@ -460,22 +470,26 @@ footer > a.it:hover > span{
     transition:.3s ease-in-out;
 }
 
-footer > a.it:hover .insta{
+footer > div.it > a:hover .insta{
     fill: url(#instagram);
 }
 
-footer > a.ttk{
+footer > div.tkk{
+
+}
+
+footer > div.ttk > a{
     top: 2.2rem;
     right: 25.5rem;
 }
 
-footer > a.ttk > span{
+footer > div.ttk > a > span{
     -webkit-background-clip: text;
     background-clip: text;
     transition: 0.3s ease;
 }
 
-footer > a.ttk:hover > span{
+footer > div.ttk > a:hover > span{
     background: linear-gradient(45deg, #00f2ea, #ff0050);
     -webkit-background-clip: text;
     background-clip: text;
@@ -488,17 +502,21 @@ footer > a.ttk:hover > span{
     transition: fill .3s ease-in-out;
 }
 
-footer > a.ttk:hover .tiktok{
+footer > div.ttk > a:hover .tiktok{
     fill: url(#tik);
 }
 
-footer > a.tw{
+footer > div.tw{
+
+}
+
+footer > div.tw > a{
     top: 1.5rem;
     right: 24rem;
     transition: .2s ease-in-out;
 }
 
-footer > a.tw:hover{
+footer div.tw > a:hover{
     color: rgb(131, 18, 131);
 }
 
@@ -518,14 +536,18 @@ footer > .separar, footer > .separar-2 {
     left: 70rem;
 }
 
-footer > p.dev{
+footer > div.email{
+
+}
+
+footer > div.email > p.dev{
     position: relative;
     bottom: 2rem;
     right: 7rem;
     margin: 1rem 0;
 }
 
-footer > p.dev-icon{
+footer > div.email > p.dev-icon{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -534,27 +556,35 @@ footer > p.dev-icon{
     right: 24rem;
 }
 
-footer > p.dev-icon > svg{
+footer > div.email > p.dev-icon > svg{
     width: 2rem;
     margin-right: .5rem;
 }
 
-footer > p.data, footer > p.atual {
+footer > div.date{
+
+}
+
+footer > div.date > p.data, footer > p.atual {
     position: relative; /* Remove o posicionamento absoluto para ajuste automático com flexbox */
     margin: 1rem 0;
 }
 
-footer > p.data{
+footer > div.date > p.data{
     bottom: 0rem;
     right: 10rem;
 }
 
-footer > p.atual{
+footer > div.date > p.atual{
     bottom: 2rem;
     left: 40.2rem;
 }
 
-footer > p.emblema {
+footer > div.copy{
+    
+}
+
+footer > div.copy > p.emblema {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
@@ -566,146 +596,7 @@ footer > p.emblema {
     left: 43rem;
 }
 
-footer > p.emblema > svg {
+footer > div.copy > p.emblema > svg {
     width: 2rem;
     margin-right: .5rem;
-}
-
-@media screen and (max-width: 1615px) {
-    header{
-        height: 8dvh;
-    }
-
-    header > svg.lista{
-        display: block;
-        width: 3rem;
-        position: relative;
-        left: 1rem;
-    }
-
-    header > nav {
-        left: 8rem;
-    }
-
-    header > figure.user{
-        margin: -.2rem 0;
-    }
-
-    nav.sidebar{
-        display: none;
-    }
-
-    nav.sidebar > div.btn-expandir{
-        display: none;
-    }
-
-    main > div.anchor{
-        height: 2dvh;
-    }
-
-    main > p{
-        margin: 0 0;
-    }
-    
-    main > figure > img.logo1{
-        display: none;
-    }
-
-    main > figure > img.logo2{
-        display: none;
-    }
-
-    main > div.div-meta{
-        font-size: 1rem;
-        margin: 1rem 0 0 5rem;
-    }
-
-    main > input#commentary{
-        width: 15rem;
-    }
-
-    main > p.p-youtube{
-        padding: 1rem 0 4rem 0;
-    }
-
-    main > div.div-nav{
-        top: calc(100vh - 75%); /* Ajuste conforme necessário */
-        left: calc(100vw - -4%); /* Ajuste conforme necessário */
-    }
-
-    footer{
-        font-size: 1rem;
-        padding: 1rem 0 2.5rem 0;
-    }
-
-    footer > p.redes{
-        bottom: 1.8rem;
-        left: -1.5rem;
-    }
-
-    footer > div.share{
-        display: none;
-    }
-    
-    footer > a > svg{
-        width: 1.9rem;
-    }
-    
-    footer > a.yt{
-        top: 0rem;
-        right: 8.5rem;
-    }
-    
-    footer > a.dc{
-        top: -.5rem;
-        right: 1.7rem;
-    }
-    
-    footer > a.it{
-        top: 2rem;
-        right: 12.7rem;
-    }
-    
-    footer > a.ttk{
-        top: 1.5rem;
-        right: 3.7rem;
-    }
-    
-    footer > a.tw{
-        top: 4rem;
-        right: 12rem;
-    }
-    
-    footer > .separar, footer > .separar-2 {
-        display: none;
-    }
-    footer > p.dev{
-        bottom: -4rem;
-        right: -.5rem;
-    }
-    
-    footer > p.dev-icon{
-        bottom: -6rem;
-        right: 10.5rem;
-    }
-    
-    footer > p.dev-icon > svg{
-        width: 2rem;
-        margin-right: .5rem;
-    }
-    
-    footer > p.data{
-        bottom: -5rem;
-        right: 4rem;
-    }
-    
-    footer > p.atual{
-        bottom: -3rem;
-        left: -1.5rem;
-    }
-    
-    footer > p.emblema {
-        top: 3rem;
-        left: 1.5rem;
-    }
 }
