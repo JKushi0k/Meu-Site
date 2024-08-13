@@ -182,9 +182,10 @@ main > p.p-meta{
 }
 
 main > div.div-meta{
-    margin: 1rem 0 1rem 40rem;
+    margin: 1rem 17rem 1rem 6rem;
+    position: relative;
+    left: 15rem;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -372,7 +373,7 @@ footer{
     background-color: var(--backgroundHeader-color);
     box-shadow: 0rem -.3rem .4rem var(--corParaTextos-color);
     width: 100%;
-    height: auto;
+    height: 9.3%;
     position: relative;
     z-index: 0;
     padding: 1rem;
@@ -416,7 +417,8 @@ footer > div.yt, footer > div.dc, footer > div.it, footer > div.ttk, footer > di
 
 footer > div.yt{
     top: 1rem;
-    margin: 0 0 0 5.4rem;
+    right: 3rem;
+    margin: .5rem 91rem 0 5.9rem;
 }
 
 footer > div.yt > a{
@@ -428,8 +430,9 @@ footer > div.yt > a:hover{
 }
 
 footer > div.dc{
-    top: 3rem;
-    margin: 0 0 0 5.4rem;
+    top: 3.5rem;
+    right: 5.9rem;
+    margin: .5rem 91rem 0 5.9rem;
 }
 
 footer > div.dc > a{
@@ -442,13 +445,8 @@ footer > div.dc > a:hover{
 
 footer > div.it{
     top: 1rem;
-    left: 20rem;
-    margin: 0 0 0 0;
-}
-
-footer > div.it > a{
-    top: 0rem;
-    right: 15rem;
+    right: 0rem;
+    margin: .5rem 84rem 0 14rem;
 }
 
 footer > div.it > a > span{
@@ -474,13 +472,10 @@ footer > div.it > a:hover .insta{
     fill: url(#instagram);
 }
 
-footer > div.tkk{
-
-}
-
-footer > div.ttk > a{
-    top: 2.2rem;
-    right: 25.5rem;
+footer > div.ttk{
+    top: 3.5rem;
+    right: 2rem;
+    margin: .5rem 84rem 0 14rem;
 }
 
 footer > div.ttk > a > span{
@@ -507,12 +502,12 @@ footer > div.ttk > a:hover .tiktok{
 }
 
 footer > div.tw{
-
+    top: 2.5rem;
+    right: 0rem;
+    margin: .5rem 76rem 0 14rem;
 }
 
 footer > div.tw > a{
-    top: 1.5rem;
-    right: 24rem;
     transition: .2s ease-in-out;
 }
 
@@ -520,40 +515,11 @@ footer div.tw > a:hover{
     color: rgb(131, 18, 131);
 }
 
-footer > .separar, footer > .separar-2 {
-    transform: rotate(-45deg);
-    width: 10%; /* Ajusta a largura para 50% da largura do footer */
-    position: absolute;
-}
-
-.separar{
-    top: 5rem;
-    left: 40rem;
-}
-
-.separar-2{
-    top: 5rem;
-    left: 70rem;
-}
-
 footer > div.email{
-
-}
-
-footer > div.email > p.dev{
-    position: relative;
-    bottom: 2rem;
-    right: 7rem;
-    margin: 1rem 0;
-}
-
-footer > div.email > p.dev-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    bottom: 0rem;
-    right: 24rem;
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    margin: 0 45rem 0 20rem;
 }
 
 footer > div.email > p.dev-icon > svg{
@@ -561,42 +527,158 @@ footer > div.email > p.dev-icon > svg{
     margin-right: .5rem;
 }
 
+footer > div.email > p.dev-icon > span{
+    position: relative;
+    bottom: .3rem;
+}
+
 footer > div.date{
-
-}
-
-footer > div.date > p.data, footer > p.atual {
-    position: relative; /* Remove o posicionamento absoluto para ajuste automático com flexbox */
-    margin: 1rem 0;
-}
-
-footer > div.date > p.data{
-    bottom: 0rem;
-    right: 10rem;
-}
-
-footer > div.date > p.atual{
-    bottom: 2rem;
-    left: 40.2rem;
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    margin: 0 10rem 0 6rem;
 }
 
 footer > div.copy{
-    
-}
-
-footer > div.copy > p.emblema {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: center;
-    font-size: 1rem;
-    line-height: 2rem;
-    position: relative;
-    top: 1.5rem;
-    left: 43rem;
+    position: absolute;
+    top: 4.9rem;
+    right: 0;
+    margin: 0 3.5rem 0 0;
 }
 
 footer > div.copy > p.emblema > svg {
     width: 2rem;
     margin-right: .5rem;
+}
+
+footer > div.copy > p.emblema > span {
+    font-size: 1rem;
+    position: relative;
+    bottom: .5rem;
+}
+
+@media (max-width: 1792px){
+    footer > div.yt{
+        right: 0rem;
+        margin: .5rem 90rem 0 5.9rem;
+    }
+
+    footer > div.dc{
+        right: 0rem;
+        margin: .5rem 93rem 0 5.9rem;
+    }
+
+    footer > div.it{
+        margin: .5rem 80rem 0 14rem;
+    }
+
+    footer > div.ttk{
+        right: 0rem;
+        margin: .5rem 82rem 0 14rem;
+    }
+
+    footer > div.tw{
+        right: 0rem;
+        margin: .5rem 72rem 0 14rem;
+    }
+}
+
+@media (max-width: 1730px) {
+    footer > div.share{
+        display: block;
+        width: 3rem;
+        position: absolute;
+        top: 2rem;
+        right: 0rem;
+        margin: .5rem 81.5rem 0 5.9rem;
+        color: #000000;
+        background-color: var(--corParaTextos-color);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    footer > div.share > svg{
+        width: 2rem;
+        margin: .5rem 0 0 0;
+    }
+
+    footer > div.yt{
+        display: none;
+    }
+
+    footer > div.dc{
+        display: none;
+    }
+
+    footer > div.it{
+        display: none;
+    }
+
+    footer > div.ttk{
+        display: none;
+    }
+
+    footer > div.tw{
+        display: none;
+    }
+}   
+
+@media (max-width: 1500px){
+    main > figure > img.logo1{
+        display: none;
+    }
+
+    footer > div.share{
+        margin: .5rem 74rem 0 5.9rem;
+    }
+}
+
+@media (max-width: 1300px){
+    footer > div.email{
+        display: none;
+    }
+
+    footer > p.redes{
+        padding: 0 30rem 0 0;
+    }
+
+    footer > div.share{
+        margin: .5rem 53rem 0 5.9rem;
+    }
+}
+
+@media (max-width: 960px){
+    header > svg.lista{
+        display: block;
+        width: 3rem;
+        cursor: pointer;
+    }
+
+    header > nav{
+        left: 8rem;
+    }
+
+    nav.sidebar{
+        display: none;
+    }
+
+    nav.sidebar > div.btn-expandir{
+        display: none;
+    }
+
+    main > p.p-meta{
+        display: none;
+    }
+    
+    main > div.div-meta{
+        display: none;
+    }
+
+    main > div.div-nav{
+        display: none;
+    }
+
+    footer > div.share{
+        margin: .5rem 42rem 0 5.9rem;
+    }
 }
