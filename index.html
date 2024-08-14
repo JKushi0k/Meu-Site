@@ -11,8 +11,10 @@
 <body>
     <!-- Cabeçalho -->
     <header>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list lista" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list lista" id="menu-icon" viewBox="0 0 16 16">
+            <path id="menu-path-1" d="M2 4h12v2H2z"></path>
+            <path id="menu-path-2" d="M2 8h12v2H2z"></path>
+            <path id="menu-path-3" d="M2 12h12v2H2z"></path>
         </svg>
 
         <figure class="logo">
@@ -26,10 +28,20 @@
         <figure class="user">
             <img src="./Image/User.png" alt="Imagem User" title="Imagem User">
         </figure>
+
+        <!-- Div user -->
+        <div id="userInfo" class="hidden">
+            <p><a href="#">Iniciar Sessão</a></p>
+            <p><a href="#">Registrar-se</a></p>
+            <p><a href="#"></a>Home</p>
+            <p><a href="#"></a>Vídeos</p>
+            <p><a href="#"></a>Shorts</p>
+            <p><a href="#"></a>Cronologia</p>
+        </div>
     </header>
 
     <!-- Sidebar -->
-    <nav class="sidebar">
+    <nav class="sidebar" id="sidebar">
         <div class="btn-expandir">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
@@ -265,5 +277,7 @@
             </p>
         </div>
     </footer>
+
+    <script src="./js/index.js"></script>
 </body>
 </html>

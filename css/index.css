@@ -100,10 +100,6 @@ nav.sidebar{
     z-index: 1;
 }
 
-nav.sidebar:hover{
-    width: 300px;
-}
-
 nav.sidebar > div.btn-expandir{
     width: 20%;
     padding-left: 10px;
@@ -652,6 +648,25 @@ footer > div.copy > p.emblema > span {
         display: block;
         width: 3rem;
         cursor: pointer;
+        transform-origin: center;
+        margin-bottom: .5rem;
+    }
+
+    #menu-path-1, #menu-path-2, #menu-path-3 {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Transições para transformar o menu em X */
+    .change #menu-path-1 {
+        transform: translateY(-.1rem) translateX(.4rem) rotate(45deg);
+    }
+
+    .change #menu-path-2 {
+        opacity: 0;
+    }
+
+    .change #menu-path-3 {
+        transform: translateY(.2rem) translateX(-.4rem) rotate(-45deg);
     }
 
     header > nav{
@@ -659,7 +674,14 @@ footer > div.copy > p.emblema > span {
     }
 
     nav.sidebar{
-        display: none;
+        left: -15rem;
+        width: 14rem;
+        transition: left 0.4s ease-in-out;
+    }
+
+    .sidebar.active{
+        left: 0;
+        width: 14rem;
     }
 
     nav.sidebar > div.btn-expandir{
