@@ -83,6 +83,67 @@ header > figure.user > img{
     width: 5rem;
     position: absolute;
     right: .5rem;
+    cursor: pointer;
+}
+
+/* Estilização do userInfo */
+header > div.user-info{
+    margin: 1rem auto;
+    padding: 1rem 1rem;
+    background-color: var(--hoverParaTexto-color);
+    border: var(--backgroundSidebar-color) .5rem solid;
+    border-radius: 6% 0% 6% 6%;
+    position: fixed;
+    top: 1rem;
+    right: 4.5rem;
+}
+
+header > div.user-info > p > a{
+    text-decoration: none;
+    color: #000000;
+    transition: color .3s ease-in-out;
+}
+
+header > div.user-info > p > a:hover{
+    color: var(--corParaTextos-color);
+}
+
+header > div.hidden{
+    display: none;
+}
+
+/* Área da animação */
+.show {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+}
+
+.hide {
+    animation: fadeOut .5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-6rem);
+    }
 }
 
 /* Estilização da Sidebar */
@@ -96,8 +157,12 @@ nav.sidebar{
     top: 3.6rem;
     left: 0;
     overflow: hidden;
-    transition: .3s;
+    transition: .5s;
     z-index: 1;
+}
+
+nav.sidebar.expandir{
+    width: 300px;
 }
 
 nav.sidebar > div.btn-expandir{
@@ -120,6 +185,10 @@ nav.sidebar > ul > li.item-menu{
     transition: .5s ease-in-out;
 }
 
+nav.sidebar > ul > li.ativo {
+    background-color: var(--hoverParaIcone-color);
+}
+
 nav.sidebar > ul > li.item-menu:hover{
     background-color: var(--hoverParaIcone-color);
 }
@@ -140,7 +209,14 @@ nav.sidebar > ul > li.item-menu > a > span.icon > svg{
 }
 
 nav.sidebar > ul > li.item-menu > a > span.txt-link{
-    margin-left: 40px;
+    margin-left: 6rem;
+    transition: .7s ease-in-out;
+    opacity: 0;
+}
+
+nav.sidebar.expandir > ul > li.item-menu > a > span.txt-link{
+    margin-left: 3rem;
+    opacity: 1;
 }
 
 /* Estilizando o Main */
