@@ -8,8 +8,6 @@
     --hoverParaIcone-color:      #2CE8F5;
 
     /* Variaveis secundarias */
-    --metaverde-color:    #C1FF72;
-    --metavermelho-color: #FF3131;
     --comentario-color:   #260668;
     --gradientButton-color:  linear-gradient(90deg, #000000, #3533CD);
     --gradientyoutube-color: linear-gradient(135deg, #ff0000, #ffffff);
@@ -266,18 +264,6 @@ main > div.div-meta > ol > li{
     text-align: left;
 }
 
-.meta-conseguida{
-    color: var(--metaverde-color);
-}
-
-.meta-chegada{
-    color: var(--hoverParaTexto-color);
-}
-
-.meta-a-chegar{
-    color: var(--metavermelho-color);
-}
-
 main > label{
     color: var(--hoverParaTexto-color);
     display: block;
@@ -314,6 +300,7 @@ main > button{
     color: var(--corParaTextos-color);
     border: none;
     border-radius: .5rem;
+    cursor: pointer;
     transition: .6s ease-in-out;
 }
 
@@ -330,7 +317,7 @@ main > div.div-commentary{
     border-radius: 2rem;
     background-color: var(--comentario-color);
     margin: 1rem auto;
-    padding: 1rem 0;
+    padding: 1rem 1rem;
     text-align: left;
     box-sizing: border-box;
 }

@@ -50,29 +50,96 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     // Verificar a quantidade de inscritos
-    const API_KEY           = 'AIzaSyBsSV6moIikzN5vvB_lhPrFW0b_8x2O4f0'
+    const API_KEY           = ''
     const CHANNEL_ID        = 'UCEu8sLYdIu4WRozw-Pdt4mA'
-    const targetSubscribers = 1000 // número alvo de inscritos
 
     async function getSubscribers() {
-        const response    = await fetch ('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}')
-        const data        = await response.json()
-        const subscribers = parseInt(data.items[0].statistics.subscriberCount)
-        return subscribers
+        try {
+            const response    = await fetch (`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`)
+            const data        = await response.json()
+
+            if (data.items && data.items.length > 0) {
+                const subscribers = parseInt(data.items[0].statistics.subscriberCount, 10)
+                return subscribers
+            } else {
+                throw new Error('Não foi possível obter os incritos.');
+            }
+            
+        } catch (error) {
+            return null
+        }
     }
 
     async function upadateTextColor() {
         const subscribers = await getSubscribers()
-        const textElement = document.getElementById('subscriber-text')
+        const textElement = document.querySelectorAll('.subscriber-text')
 
-        if (subscribers < targetSubscribers) {
-            textElement.style.color = 'red'
-        }else if (subscribers == targetSubscribers) {
-            textElement.style.color = 'blue'
-        }else {
-            textElement.style.color = 'green'
+        if (subscribers == null) {
+            textElement.forEach(element => {
+                element.style.color = 'gray'
+                element.innerHTML   = 'Erro ao obter inscritos'
+            })            
+            return
+        }
+
+        let nextTarget = null
+
+        // Itera sobre cada elemento de texto
+        textElement.forEach(element => {
+            // Extrai o número de inscritos mencionado no HTML
+            const textContent          = element.textContent || element.innerHTML
+            const mentionedSubscribers = parseInt(textContent.match(/\d+/)[0], 10) // Extrai o primeiro número que aparecer
+
+            if (mentionedSubscribers > subscribers && (nextTarget == null || mentionedSubscribers < nextTarget)) {
+                nextTarget = mentionedSubscribers // Define o próximo alvo de inscritos
+            }
+
+            if (mentionedSubscribers > subscribers) {
+                element.style.color = '#FF3131'
+            }else if (mentionedSubscribers == subscribers) {
+                element.style.color = '#5271FF'
+            }else {
+                element.style.color = '#C1FF72'
+            }
+        })
+
+        // Aplica a cor azul ao próximo alvo de inscritos
+        if (nextTarget !== null) {
+            textElement.forEach(element => {
+                const textContent = element.textContent || element.innerHTML
+                const mentionedSubscribers = parseInt(textContent.match(/\d+/)[0], 10)
+
+                if (mentionedSubscribers == nextTarget) {
+                    element.style.color = '#5271FF'
+                }
+            })
         }
     }
 
     upadateTextColor()
+
+    // Adicionar comentario da input no div
+    function toAddCommentary() {
+        let commentary = document.getElementById('commentary').value
+
+        // Verifica se o input não está vazio
+        if (commentary.trim() !== '') {  
+            // Atualiza o conteúdo da div com o comentário
+            document.getElementById('divCommentary').textContent = commentary
+
+            // Limpa o input após adicionar o comentário
+            document.getElementById('commentary').value = ''
+        }
+    }
+
+    // Adicionar o evento de clique ao botão
+    document.getElementById('addCommentary').addEventListener('click', toAddCommentary)
+
+    // Adicionar o envento de pressionar a tecla Enter no input
+    document.getElementById('divCommentary').addEventListener('keypress', function(event){
+        if (event.key == 'Enter') {
+            event.preventDefault() // Impede o comportamento padrão de envio do formulário
+            toAddCommentary() // Chama a função para adicionar o comentário
+        }
+    })
 })
