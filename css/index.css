@@ -345,6 +345,10 @@ main > div.div-vota > p > input{
     margin: 1rem;
 } 
 
+main > div.div-vota > p > span{
+    display: none;
+}
+
 main > p.p-youtube{
     display: flex;
     flex-wrap: wrap;

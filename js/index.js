@@ -118,14 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     upadateTextColor()
 
-    // Adicionar comentario da input no div
+    // Adicionar comentario da input na div
     function toAddCommentary() {
         let commentary = document.getElementById('commentary').value
 
         // Verifica se o input não está vazio
         if (commentary.trim() !== '') {  
+            // Cria um novo parágrafo para o comentário
+            let novoComentario = document.createElement('p')
+            novoComentario.textContent = commentary
+
             // Atualiza o conteúdo da div com o comentário
-            document.getElementById('divCommentary').textContent = commentary
+            document.getElementById('divCommentary').appendChild(novoComentario)
 
             // Limpa o input após adicionar o comentário
             document.getElementById('commentary').value = ''
@@ -136,10 +140,77 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('addCommentary').addEventListener('click', toAddCommentary)
 
     // Adicionar o envento de pressionar a tecla Enter no input
-    document.getElementById('divCommentary').addEventListener('keypress', function(event){
+    document.getElementById('commentary').addEventListener('keydown', function(event){
         if (event.key == 'Enter') {
             event.preventDefault() // Impede o comportamento padrão de envio do formulário
             toAddCommentary() // Chama a função para adicionar o comentário
         }
     })
+
+    // Área da votação dos jogos
+    // Inicializa contadores de votos
+    let votes = {
+        jogo1: 0,
+        jogo2: 0,
+        jogo3: 0,
+        jogo4: 0,
+        jogo5: 0
+    }
+
+    // Total de votos
+    let totalVotes = 0
+
+    document.querySelectorAll('input[name="game"]').forEach(input => {
+        input.addEventListener('change', () => {
+            const gameValue = input.value
+
+            // Incrementa o contador de votos
+            votes[gameValue]++
+            totalVotes++
+
+            // Atualiza os resultedos
+            updateResults()
+        })
+    })
+
+    function updateResults() {
+        // Atualiza os resultados para cada jogo
+        document.getElementById('resultJogos1').textContent = calculatePercentage(votes.jogo1) + '%'
+        document.getElementById('resultJogos2').textContent = calculatePercentage(votes.jogo2) + '%'
+        document.getElementById('resultJogos3').textContent = calculatePercentage(votes.jogo3) + '%'
+        document.getElementById('resultJogos4').textContent = calculatePercentage(votes.jogo4) + '%'
+        document.getElementById('resultJogos5').textContent = calculatePercentage(votes.jogo5) + '%'
+
+        document.querySelectorAll('.div-vota span').forEach(span => {
+            span.style.display = 'inline'; // Torna o span visível
+        });
+    }
+
+    // Função para calcular porcentagem
+    function calculatePercentage(votesForGame) {
+        if (totalVotes == 0) return '0'
+        return ((votesForGame / totalVotes) * 100).toFixed(2)
+    }
+
+    // Função para verificar se o usuário já votou
+    function checkVoted() {
+        if (localStorage.getItem('hasVoted') == true) {
+            // Se o usuário já votou, desabilite os inputs
+            document.querySelectorAll('input[name="game"]').forEach(input => {
+                input.disabled = true
+            })
+        }
+    }
+
+    // Função para registrar o voto
+    function registerVote(gameValue) {
+        votes[gameValue]++
+        totalVotes++
+        updateResults()
+        // Salvar a informação no localStorage
+        localStorage.setItem('hasVotes', 'true')
+    }
+
+    
 })
+
