@@ -160,18 +160,70 @@ document.addEventListener('DOMContentLoaded', () => {
     // Total de votos
     let totalVotes = 0
 
-    document.querySelectorAll('input[name="game"]').forEach(input => {
-        input.addEventListener('change', () => {
-            const gameValue = input.value
+    // Função que verifica se o usuário já votou
+    function checkUserVoted() {
+        return localStorage.getItem('hasVoted') == 'true'
+    }
 
+    // Função para carregar os votos do localStorage
+    function loadVotes() {
+        let storedVotes = JSON.parse(localStorage.getItem('votes'))
+        if (storedVotes) {
+            votes = storedVotes.votes
+            totalVotes = storedVotes.totalVotes
+            updateResults() // Atualiza a página com os votos carregados
+        }
+    }
+
+    // Função que registra o voto e atualiza os resultados
+    function registerVote(gameValue) {
+        if (!checkUserVoted()) {
             // Incrementa o contador de votos
             votes[gameValue]++
             totalVotes++
 
-            // Atualiza os resultedos
+             // Atualiza os resultedos
             updateResults()
+
+            // Marca que o usuário votou
+            localStorage.setItem('hasVoted', 'true')
+
+            // Salva os votos no localStorage
+            localStorage.setItem('votes', JSON.stringify({
+                votes: votes,
+                totalVotes: totalVotes
+            }))
+
+            // Desabilita todos os inputs de rádio
+            disabledRadio()
+        }
+    }
+
+    // Função para desabilitar todos os inputs de rádio
+    function disabledRadio() {
+        document.querySelectorAll('input[name="game"]').forEach(input => {
+            input.disabled = true
+        })
+
+        document.querySelectorAll('.div-vota span').forEach(span => {
+            span.style.display = 'inline'; // Torna o span visível
+        });
+    }
+
+    // Função para habilitar todos os inputs de rádio
+    function enableRadios() {
+        document.querySelectorAll('input[name="game"]').forEach(input => {
+            input.disabled = false
+        })
+    }
+
+    document.querySelectorAll('input[name="game"]').forEach(input => {
+        input.addEventListener('change', () => {
+            const gameValue = input.value
+            registerVote(gameValue)
         })
     })
+
 
     function updateResults() {
         // Atualiza os resultados para cada jogo
@@ -192,25 +244,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return ((votesForGame / totalVotes) * 100).toFixed(2)
     }
 
-    // Função para verificar se o usuário já votou
-    function checkVoted() {
-        if (localStorage.getItem('hasVoted') == true) {
-            // Se o usuário já votou, desabilite os inputs
-            document.querySelectorAll('input[name="game"]').forEach(input => {
-                input.disabled = true
-            })
+    // Inicializa a página
+    function initialize() {
+        loadVotes() // Carrega os votos armazenados
+
+        // Verifica se o usuário já votou ao carregar a página
+        if (checkUserVoted()) {
+            disabledRadio() // Desabilita os inputs se o usuário já votou
+        }else {
+            enableRadios() // Habilita os inputs se o usuário não votou
         }
+
+        document.querySelectorAll('input[name="game"]').forEach(input => {
+            input.addEventListener('change', () => {
+                const gameValue = input.value
+                registerVote(gameValue)
+            })
+        })
     }
 
-    // Função para registrar o voto
-    function registerVote(gameValue) {
-        votes[gameValue]++
-        totalVotes++
-        updateResults()
-        // Salvar a informação no localStorage
-        localStorage.setItem('hasVotes', 'true')
-    }
-
-    
+    // Executa a inicialização quando a página carrega
+    initialize();
 })
 
