@@ -392,9 +392,23 @@ main > p.p-youtube > a:hover > svg{
 
 main > div.div-nav{
     position: fixed;
-    top: calc(100vh - 75%); /* Ajuste conforme necessário */
-    left: calc(100vw - 0%); /* Ajuste conforme necessário */
+    top: calc(100vh - 75%);
+    left: calc(100vw - -9.5%);
     z-index: 1;
+    transition: left .3s ease-in-out;
+}
+
+main > div.div-nav.expand {
+    position: fixed;
+    left: calc(100vw - 0%);
+}
+
+#svgExpandir{
+    transition: transform .5s ease-in-out;
+}
+ 
+.rotate {
+    transform: rotate(180deg);
 }
 
 main > div.div-nav > svg{
@@ -403,6 +417,11 @@ main > div.div-nav > svg{
     top: 2.5rem;
     right: 12.5rem;
     cursor: pointer;
+    transition: width .5s ease-in-out;
+}
+
+main > div.div-nav > svg:hover{
+    width: 2.5rem;
 }
 
 main > div.div-nav > nav{
@@ -588,11 +607,13 @@ footer > div.email{
 footer > div.email > p.dev-icon > svg{
     width: 2rem;
     margin-right: .5rem;
+    cursor: pointer;
 }
 
 footer > div.email > p.dev-icon > span{
     position: relative;
     bottom: .3rem;
+    cursor: pointer;
 }
 
 footer > div.date{

@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Expansão da sidebar com svg (media quiries de 960px)
-    const sidebar = document.getElementById('sidebar');
-    const menuToggle = document.getElementById('menu-icon');
+    const sidebar = document.getElementById('sidebar')
+    const menuToggle = document.getElementById('menu-icon')
     
 
     menuToggle.addEventListener('click', () => {
         sidebar.classList.toggle('active');
         menuToggle.classList.toggle('change');
-    });
+    })
 
     // Aparecer e desaparecer a div
     document.getElementById('userImage').addEventListener('click', function(){
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('.div-vota span').forEach(span => {
             span.style.display = 'inline'; // Torna o span visível
-        });
+        })
     }
 
     // Função para calcular porcentagem
@@ -265,5 +265,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Executa a inicialização quando a página carrega
     initialize();
+
+    // Armazenar o tempo de início da votação
+    function startVoting() {
+        const startTime = new Date().getTime() // Obtém o tempo atual em milissegundos
+        localStorage.setItem('votingStartTime', startTime)
+
+        // Habilita os inputs de rádio
+        enableRadios()
+    }
+
+    // Verificação do tempo restante
+    function checkVotingPeriod() {
+        const startTime   = localStorage.getItem('votingStartTime')
+        const currentTime = new Date().getTime()
+
+        // 24 horas em milissegundos
+        const hours = 24 * 60 * 60 * 1000
+
+        if (startTime && (currentTime - startTime) >= hours) {
+            disabledRadio()
+        }
+    }
+
+    function displayTimeRemaining() {
+        const startTime   = localStorage.getItem('votingStartTime')
+        const currentTime = new Date().getTime()
+
+        const twentyFourHours = 24 * 60 * 60 * 1000
+        const timeLeft        = twentyFourHours - (currentTime - startTime)
+
+        if (timeLeft > 0) {
+            const hours   = Math.floor ((timeLeft / (1000 * 60 * 60)) % 24)
+            const minutes = Math.floor ((timeLeft / (1000 * 60)) % 60)
+            const seconds = Math.floor ((timeLeft / 1000) % 60)
+
+            document.getElementById('timeRemaining').textContent =
+            `Tempo restante: ${hours}h ${minutes}m ${seconds}s`
+        }else {
+            document.getElementById('timeRemaining').textContent = 'A votação expirou!'
+            disabledRadio()
+        }
+    }
+
+    // Inicia a votação
+    function initializeVotingSystem() {
+        if (!localStorage.getItem('votingStartTime')) {
+            startVoting() // Inicia a votação se ainda não foi iniciada
+        }else {
+            checkVotingPeriod() // Verifica se o tempo de votação já passou
+        }
+        displayTimeRemaining() // Atualiza o tempo restante na tela
+        setInterval(displayTimeRemaining, 1000) // Atualiza o contador a cada segundo
+    }
+
+    // Chama a inicialização quando a página carrega
+    initializeVotingSystem()
+
+    // Aparecer a div
+    let expand = document.getElementById('svgExpandir')
+    let divNav = document.getElementById('divNav')
+    
+    expand.addEventListener('click', function() {
+        divNav.classList.toggle('expand')
+        expand.classList.toggle('rotate')
+    })
+
+    // Criando link Mailto
+    document.getElementById('emailSpan').addEventListener('click', function() {
+        window.location.href = 'mailto:asta56221@gmail.com'
+    })
+
+    document.getElementById('emailSvg').addEventListener('click', function() {
+        window.location.href = 'mailto:asta56221@gmail.com'
+    })
 })
 
