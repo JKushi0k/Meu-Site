@@ -339,5 +339,60 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('emailSvg').addEventListener('click', function() {
         window.location.href = 'mailto:asta56221@gmail.com'
     })
-})
 
+    // Aparecer redes sociais
+    const share = document.getElementById('share')
+    let isClicked = false
+
+    // Quando clicar aparecer os links
+    function clicked() {
+        document.querySelectorAll('.none').forEach(link => {
+            link.style.display = "block"
+        })
+    }
+
+    // Quando clicar sumir os links
+    function noClicked() {
+        document.querySelectorAll('.none').forEach(link => {
+            link.style.display = "none"
+        })
+    }
+
+    // verifica se foi clicado ou não
+    share.addEventListener('click', function() {
+        if (isClicked) {
+            noClicked()
+        } else {
+            clicked()
+        }
+        isClicked = !isClicked 
+    })
+
+    // Colocando links na divs
+    const youtube = document.getElementById('youtube');
+
+    // Adiciona um evento de clique que redireciona para a URL
+    youtube.addEventListener('click', function() {
+        window.location.href = 'https://www.youtube.com/channel/UCEu8sLYdIu4WRozw-Pdt4mA';
+    });
+    
+    const discord = document.getElementById('discord');
+    discord.addEventListener('click', function() {
+        window.location.href = 'https://discord.gg/YxkdseCaQt';
+    });
+
+    const instagram = document.getElementById('instagram');
+    instagram.addEventListener('click', function() {
+        window.location.href = 'https://www.instagram.com/ph.pablogiyuu/';
+    });
+
+    const tiktok = document.getElementById('tiktok');
+    tiktok.addEventListener('click', function() {
+        window.location.href = 'https://www.tiktok.com/@jus_kushi';
+    });
+
+    const twitch = document.getElementById('twitch');
+    twitch.addEventListener('click', function() {
+        window.location.href = 'https://www.twitch.tv/jus_kushi';
+    });
+})

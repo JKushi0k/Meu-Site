@@ -8,7 +8,8 @@
     --hoverParaIcone-color:      #2CE8F5;
 
     /* Variaveis secundarias */
-    --comentario-color:   #260668;
+    --comentario-color:    #260668;
+    --vermelho-color:      #FF3131;
     --gradientButton-color:  linear-gradient(90deg, #000000, #3533CD);
     --gradientyoutube-color: linear-gradient(135deg, #ff0000, #ffffff);
 }
@@ -508,7 +509,7 @@ footer > div.yt > a{
 }
 
 footer > div.yt > a:hover{
-    color: var(--metavermelho-color);
+    color: var(--vermelho-color);
 }
 
 footer > div.dc{
@@ -538,14 +539,14 @@ footer > div.it > a > span{
 }
 
 footer > div.it > a:hover > span{
-    background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+    background-image: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
 }
 
-.insta{
+.instagram{
     fill: currentColor;
     transition:.3s ease-in-out;
 }
@@ -567,7 +568,7 @@ footer > div.ttk > a > span{
 }
 
 footer > div.ttk > a:hover > span{
-    background: linear-gradient(45deg, #00f2ea, #ff0050);
+    background-image: linear-gradient(45deg, #ff0050, #00f2ea);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -642,6 +643,10 @@ footer > div.copy > p.emblema > span {
 }
 
 @media (max-width: 1792px){
+    main > div.div-nav{
+        left: calc(100vw - -10%);
+    }
+
     footer > div.yt{
         right: 0rem;
         margin: .5rem 90rem 0 5.9rem;
@@ -668,6 +673,10 @@ footer > div.copy > p.emblema > span {
 }
 
 @media (max-width: 1730px) {
+    main > div.div-nav{
+        left: calc(100vw - -10.4%);
+    }
+
     footer > div.share{
         display: block;
         width: 3rem;
@@ -679,6 +688,12 @@ footer > div.copy > p.emblema > span {
         background-color: var(--corParaTextos-color);
         border-radius: 50%;
         cursor: pointer;
+        transition: top .3s ease-in-out;
+    }
+
+    .share.move{
+        position: absolute;
+        top: 3rem;
     }
 
     footer > div.share > svg{
@@ -686,24 +701,134 @@ footer > div.copy > p.emblema > span {
         margin: .5rem 0 0 0;
     }
 
-    footer > div.yt{
+    footer > div.none{
+        display: none;
+        animation: disappear .5s ease-in-out;
+    }
+
+    @keyframes disappear {
+        from {
+            opacity: 0;
+        }
+    
+        to {
+            opacity: 1;
+        }
+    }
+
+    footer > div.you{
+        top: 4rem;
+        right: -5.6rem;
+        background-color: var(--vermelho-color);
+        border-radius: 50%;
+        width: 3rem;
+        cursor: pointer;
+    }
+
+    footer > div.you > a > svg {
+        width: 2.5rem;
+        position: relative;
+        left: .2rem;
+    }
+
+    footer > div.you > a > span{
         display: none;
     }
 
-    footer > div.dc{
+    footer > div.yt > a:hover{
+        color: var(--corParaTextos-color);
+    }
+
+    footer > div.disc{
+        top: 1rem;
+        right: -8rem;
+        background-color: var(--hoverParaTexto-color);
+        border-radius: 50%;
+        width: 3rem;
+        cursor: pointer;
+    }
+
+    footer > div.disc > a > svg {
+        width: 2.5rem;
+        position: relative;
+        left: .2rem;
+    }
+
+    footer > div.disc > a > span{
         display: none;
     }
 
-    footer > div.it{
+    footer > div.dc > a:hover{
+        color: var(--corParaTextos-color);
+    }
+
+    footer > div.inst{
+        top: -.7rem;
+        right: 1.5rem;
+        background-image: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+        border-radius: 50%;
+        width: 3rem;
+        cursor: pointer;
+    }
+
+    footer > div.inst > a > svg {
+        width: 2.5rem;
+        position: relative;
+        left: .2rem;
+    }
+
+    footer > div.inst > a > span{
         display: none;
     }
 
-    footer > div.ttk{
+    footer > div.it > a:hover .insta{
+        fill: white;
+    }
+
+    footer > div.tok{
+        top: 1rem;
+        right: -4rem;
+        background-image: linear-gradient(45deg, #ff0050, #00f2ea);
+        border-radius: 50%;
+        width: 3rem;
+        cursor: pointer;
+    }
+
+    footer > div.tok > a > svg {
+        width: 2.5rem;
+        position: relative;
+        left: .2rem;
+    }
+
+    footer > div.tok > a > span{
         display: none;
     }
 
-    footer > div.tw{
+    footer > div.ttk > a:hover .tiktok{
+        fill: white;
+    }
+
+    footer > div.twit{
+        top: 4rem;
+        right: 6.5rem;
+        background-color: rgb(131, 43, 131);
+        border-radius: 50%;
+        width: 3rem;
+        cursor: pointer;
+    }
+
+    footer > div.twit > a > svg {
+        width: 2.5rem;
+        position: relative;
+        left: .3rem;
+    }
+
+    footer > div.twit > a > span{
         display: none;
+    }
+
+    footer > div.tw > a:hover{
+        color: var(--corParaTextos-color);
     }
 }   
 
@@ -712,12 +837,20 @@ footer > div.copy > p.emblema > span {
         display: none;
     }
 
+    main > div.div-nav{
+        left: calc(100vw - -12%);
+    }
+
     footer > div.share{
         margin: .5rem 74rem 0 5.9rem;
     }
 }
 
 @media (max-width: 1300px){
+    main > div.div-nav{
+        left: calc(100vw - -14%);
+    }
+
     footer > div.email{
         display: none;
     }
@@ -774,6 +907,17 @@ footer > div.copy > p.emblema > span {
 
     nav.sidebar > div.btn-expandir{
         display: none;
+    }
+
+    nav.sidebar > ul > li.item-menu > a > span.txt-link{
+        margin-left: 4rem;
+        transition: .7s ease-in-out;
+        opacity: 0;
+    }
+    
+    nav.sidebar.sidebar.active > ul > li.item-menu > a > span.txt-link{
+        margin-left: 3rem;
+        opacity: 1;
     }
 
     main > p.p-meta{
