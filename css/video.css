@@ -7,11 +7,6 @@
     --hoverParaTexto-color:      #5271FF;
     --hoverParaIcone-color:      #2CE8F5;
     --vermelho-color:            #FF3131;
-
-    /* Variaveis secundarias */
-    --comentario-color:    #260668;
-    --gradientButton-color:  linear-gradient(90deg, #000000, #3533CD);
-    --gradientyoutube-color: linear-gradient(135deg, #ff0000, #ffffff);
 }
 
 *{
@@ -230,6 +225,24 @@ main{
 
 main > div.text > p {
     margin-bottom: 1rem;
+}
+
+main > button#loadMore {
+    width: 6rem;
+    height: 2rem;
+    color: var(--corParaTextos-color);
+    background-color: black;
+    border: white .1rem solid;
+    border-radius: .4rem;
+    transition: all .5s ease-in-out;
+}
+
+main > button#loadMore:hover {
+    width: 7rem;
+    height: 3rem;
+    color: black;
+    background-color: var(--corParaTextos-color);
+    border: rgb(0, 0, 0) .2rem solid;
 }
 
 /* Estilização do Footer */
