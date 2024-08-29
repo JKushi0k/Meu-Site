@@ -49,17 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebar.classList.toggle('expandir')
     })
 
-    
-
     // Aparecer vídeos do Youtube
-    const apiKey    = 'AIzaSyACfwGE-Qb25AUHBp99cv4jNLuwCtYo2y4'
+    const apiKey    = ''
     const channelId = 'UCEu8sLYdIu4WRozw-Pdt4mA'
     const apiUrl    = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=50` // Cararegar até 50 vídeos de uma vez para a cache
 
     let videos = []
     let currentIndex = 0
     const batchSize  = 10 // Número de vídeos a serem exibidos por vez
-
+        
     // Verifica se o cache está presente e válido (1 hora)
     function isCacheValid() {
         const cacheTime = localStorage.getItem('cacheTime')
@@ -74,48 +72,86 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(apiUrl)
             const data = await response.json()
-            console.log('Dados da API:', data)
             videos = data.items
 
             // Verificar se os vídeos foram obtidos corretamente
-            if (!videos || videos.length == 0) {
-                console.error('Nenhum vídeo encontrado');
-                return;
+            if (!data || data.items.length == 0) {
+                return
             }
 
-            // Armazena os vídeos e a hora atual do cache
-            localStorage.setItem('videos', JSON.stringify(videos))
-            localStorage.setItem('cacheTime', new Date().getTime())
+            videos = await Promise.all(data.items.map(async (video) => {
+                const videoId = video.id.videoId
+                if (!videoId) return null
 
+                try {
+                    const duration = await fetchVideoDetails(videoId);
+                    const durationInSeconds = parseDuration(duration);
+                    return durationInSeconds > 0 && durationInSeconds >= 60 ? video : null;
+                } catch (error) {
+                    console.error(`Erro ao obter detalhes do vídeo ${videoId}:`, error)
+                    return null
+                }
+            }))
+
+            videos = videos.filter(video => video != null)
+
+            // Armazena os vídeos e a hora atual do cache
+            localStorage.setItem('videos', JSON.stringify(videos));
+            localStorage.setItem('cacheTime', new Date().getTime());
+        
             currentIndex = 0
             displayVideos()
         } catch (error) {
             console.error('Erro ao buscar vídeos:', error)
         }
+    } 
+
+    async function fetchVideoDetails(videoId) {
+        try {
+            const videoDetailsResponse = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoId}&part=contentDetails`)
+            const videoDetailsData = await videoDetailsResponse.json()
+            if (videoDetailsData.items.length == 0) {
+                console.error(`Nenhum detalhe encontrado para o vídeo ${videoId}`)
+                return 'PT0S';
+            }
+            return videoDetailsData.items[0]?.contentDetails?.duration || 'PT0S'
+        } catch (error) {
+            console.error(`Erro ao obter detalhes do vídeo ${videoId}:`, error)
+            return 'PT0S'
+        }
+    }
+
+    function parseDuration(duration) {
+        if (!duration) return 0; // Garante que tenha um valor
+    
+        const matches = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+        if (!matches) return 0; // Retorna 0 se não corresponder ao formato esperado
+    
+        const hours = parseInt(matches[1], 10) || 0;
+        const minutes = parseInt(matches[2], 10) || 0;
+        const seconds = parseInt(matches[3], 10) || 0;
+        return (hours * 3600) + (minutes * 60) + seconds;
     }
 
     // Função para exibir vídeos em lotes de 10
     function displayVideos() {
         const videoContainer = document.getElementById('videoContainer')
 
-        if (!videoContainer) {
-            console.error('Contêiner de vídeos não encontrado no HTML.');
-            return;
-        }
-        console.log('Exibindo vídeos:', videos.slice(currentIndex, currentIndex + batchSize));
+        // Limpar o container antes de adicionar novos vídeos
+        videoContainer.innerHTML = ''
 
         // Carregar o próximo lote de vídeos
         for (let i = currentIndex; i < currentIndex + batchSize && i < videos.length; i++) {
             const video = videos[i]
             const videoId = video.id.videoId
             const videoTitle = video.snippet.title
-            const videoThumbnail = video.snippet.thumbnails.medium.url // URL da imagem de pré-visualização
+            const videoThumbnail = video.snippet.thumbnails.high.url // URL da imagem de pré-visualização
 
             const videoEmbed = `
                 <div class="video">
                     <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-                        <img src="${videoThumbnail}" alt="${videoTitle}">
                         <h3>${videoTitle}</h3>
+                        <img src="${videoThumbnail}" alt="${videoTitle}">
                     </a>
                 </div>
             `
@@ -141,9 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
     // Event Listener para o botão "Carregar Mais"
     document.getElementById('loadMore').addEventListener('click', displayVideos)
 
     // Carrega os vídeos ao carregar a página
-    document.addEventListener('DOMContentLoaded', loadVideos);
+    loadVideos()
 })
+
+
