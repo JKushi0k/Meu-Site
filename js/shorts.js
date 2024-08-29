@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const channelId = 'UCEu8sLYdIu4WRozw-Pdt4mA'
     const apiUrl    = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=50` // Cararegar até 50 vídeos de uma vez para a cache
 
-    let videos = []
+    let shorts = []
     let currentIndex = 0
     const batchSize  = 10 // Número de vídeos a serem exibidos por vez
         
@@ -68,55 +68,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Função para buscar vídeos da API
-    async function fetchVideos() {
+    async function fetchShorts() {
         try {
             const response = await fetch(apiUrl)
             const data = await response.json()
-            videos = data.items
 
             // Verificar se os vídeos foram obtidos corretamente
             if (!data || data.items.length == 0) {
                 return
             }
 
-            videos = await Promise.all(data.items.map(async (video) => {
-                const videoId = video.id.videoId
-                if (!videoId) return null
+            shorts = await Promise.all(data.items.map(async (short) => {
+                const shortId = short.id.videoId
+                if (!shortId) return null
 
                 try {
-                    const duration = await fetchVideoDetails(videoId);
+                    const duration = await fetchShortsDetails(shortId);
                     const durationInSeconds = parseDuration(duration);
-                    return durationInSeconds > 0 && durationInSeconds >= 60 ? video : null;
+                    return durationInSeconds > 0 && durationInSeconds <= 60 ? short : null;
                 } catch (error) {
-                    console.error(`Erro ao obter detalhes do vídeo ${videoId}:`, error)
+                    console.error(`Erro ao obter detalhes do shorts ${shortId}:`, error)
                     return null
                 }
             }))
 
-            videos = videos.filter(video => video != null)
+            shorts = shorts.filter(shorts => shorts != null)
 
-            // Armazena os vídeos e a hora atual do cache
-            localStorage.setItem('videos', JSON.stringify(videos));
+            // Armazena os shorts e a hora atual do cache
+            localStorage.setItem('shorts', JSON.stringify(shorts));
             localStorage.setItem('cacheTime', new Date().getTime());
         
             currentIndex = 0
-            displayVideos()
+            displayShorts()
         } catch (error) {
-            console.error('Erro ao buscar vídeos:', error)
+            console.error('Erro ao buscar shorts:', error)
         }
     } 
 
-    async function fetchVideoDetails(videoId) {
+    async function fetchShortsDetails(shortId) {
         try {
-            const videoDetailsResponse = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoId}&part=contentDetails`)
-            const videoDetailsData = await videoDetailsResponse.json()
-            if (videoDetailsData.items.length == 0) {
-                console.error(`Nenhum detalhe encontrado para o vídeo ${videoId}`)
+            const shortsDetailsResponse = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${shortId}&part=contentDetails`)
+            const shortsDetailsData = await shortsDetailsResponse.json()
+            if (shortsDetailsData.items.length == 0) {
+                console.error(`Nenhum detalhe encontrado para o shorts ${shortId}`)
                 return 'PT0S';
             }
-            return videoDetailsData.items[0]?.contentDetails?.duration || 'PT0S'
+            return shortsDetailsData.items[0]?.contentDetails?.duration || 'PT0S'
         } catch (error) {
-            console.error(`Erro ao obter detalhes do vídeo ${videoId}:`, error)
+            console.error(`Erro ao obter detalhes do shorts ${shortId}:`, error)
             return 'PT0S'
         }
     }
@@ -134,55 +133,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Função para exibir vídeos em lotes de 10
-    function displayVideos() {
-        const videoContainer = document.getElementById('videoContainer')
+    function displayShorts() {
+        const shortsContainer = document.getElementById('shortsContainer')
 
         // Limpar o container antes de adicionar novos vídeos
-        videoContainer.innerHTML = ''
+        shortsContainer.innerHTML = ''
 
         // Carregar o próximo lote de vídeos
-        for (let i = currentIndex; i < currentIndex + batchSize && i < videos.length; i++) {
-            const video = videos[i]
-            const videoId = video.id.videoId
-            const videoTitle = video.snippet.title
-            const videoThumbnail = video.snippet.thumbnails.high.url // URL da imagem de pré-visualização
+        for (let i = currentIndex; i < currentIndex + batchSize && i < shorts.length; i++) {
+            const short = shorts[i]
+            const shortId = short.id.videoId
+            const shortTitle = short.snippet.title
+            const shortThumbnail = short.snippet.thumbnails.high.url // URL da imagem de pré-visualização
 
-            const videoEmbed = `
-                <div class="video">
-                    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-                        <h3>${videoTitle}</h3>
-                        <img src="${videoThumbnail}" alt="${videoTitle}">
+            const shortEmbed = `
+                <div class="short">
+                    <a href="https://www.youtube.com/watch?v=${shortId}" target="_blank">
+                        <h3>${shortTitle}</h3>
+                        <img src="${shortThumbnail}" alt="${shortTitle}">
                     </a>
                 </div>
             `
-            videoContainer.innerHTML += videoEmbed
+            shortsContainer.innerHTML += shortEmbed
         }
 
         currentIndex += batchSize
 
         // Esconder o botão "Carregar Mais" se não houver mais vídeos
-        if (currentIndex >= videos.length) {
+        if (currentIndex >= shorts.length) {
             document.getElementById('loadMore').style.display = 'none'
         }
     }
 
     // Verifeica o cache e decide se busca da API ou do cache
-    function loadVideos() {
+    function loadShorts() {
         if (isCacheValid()){
-            videos = JSON.parse(localStorage.getItem('videos'))
+            shorts = JSON.parse(localStorage.getItem('shorts'))
             currentIndex = 0
-            displayVideos()
+            displayShorts()
         }else {
-            fetchVideos()
+            fetchShorts()
         }
     }
 
 
     // Event Listener para o botão "Carregar Mais"
-    document.getElementById('loadMore').addEventListener('click', displayVideos)
+    document.getElementById('loadMore').addEventListener('click', displayShorts)
 
     // Carrega os vídeos ao carregar a página
-    loadVideos()
+    loadShorts()
 
     // Criando link Mailto
     document.getElementById('emailSpan').addEventListener('click', function() {

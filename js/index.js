@@ -373,26 +373,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adiciona um evento de clique que redireciona para a URL
     youtube.addEventListener('click', function() {
-        window.location.href = 'https://www.youtube.com/channel/UCEu8sLYdIu4WRozw-Pdt4mA';
-    });
+        window.location.href = 'https://www.youtube.com/channel/UCEu8sLYdIu4WRozw-Pdt4mA'
+    })
     
-    const discord = document.getElementById('discord');
+    const discord = document.getElementById('discord')
     discord.addEventListener('click', function() {
-        window.location.href = 'https://discord.gg/YxkdseCaQt';
-    });
+        window.location.href = 'https://discord.gg/YxkdseCaQt'
+    })
 
-    const instagram = document.getElementById('instagram');
+    const instagram = document.getElementById('instagram')
     instagram.addEventListener('click', function() {
-        window.location.href = 'https://www.instagram.com/ph.pablogiyuu/';
-    });
+        window.location.href = 'https://www.instagram.com/ph.pablogiyuu/'
+    })
 
-    const tiktok = document.getElementById('tiktok');
+    const tiktok = document.getElementById('tiktok')
     tiktok.addEventListener('click', function() {
-        window.location.href = 'https://www.tiktok.com/@jus_kushi';
-    });
+        window.location.href = 'https://www.tiktok.com/@jus_kushi'
+    })
 
-    const twitch = document.getElementById('twitch');
+    const twitch = document.getElementById('twitch')
     twitch.addEventListener('click', function() {
-        window.location.href = 'https://www.twitch.tv/jus_kushi';
-    });
+        window.location.href = 'https://www.twitch.tv/jus_kushi'
+    })
 })
