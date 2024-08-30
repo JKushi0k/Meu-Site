@@ -96,7 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Ordens cronológicas para os jogos
     const ordensCronologicas = {
-        "GTA": ["GTA III",]
+        "GTA": ["Gta III"],
+
+        "HOLLOWKNIGHT": ["Hollow Knight"],
+
+        "BATMANARKHAM": ["Batman Arkham Origins"],
+
+        "FARCRY": ["Far Cry Primal"],
+
+        "ASSASSINSCREED": ["Assassin's Creed Odyssey"] 
     }
 
     // Função para ordens playslists
@@ -138,11 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
     async function renderizarPlaylistsDoCanal() {
         const playlists = await obterPlaylistsDoCanal()
 
-        // Filtra as playslist por jogo e renderiza
-        const nomesDasPlaylists = ["Gta III"]
-        const gtaPlaylists = playlists.filter(playlist => nomesDasPlaylists.some(nome => playlist.title.includes(nome)))
-        const gtaPlaylistsOrdenadas = ordenarPlaylists(gtaPlaylists, ordensCronologicas["GTA"])
-        renderizarPlaylists('GTA', gtaPlaylistsOrdenadas)
+        for (const jogo in ordensCronologicas) {
+            const jogoPlaylists = playlists.filter(playlist => ordensCronologicas[jogo].some(nome => playlist.title.includes(nome)))
+            const jogoPlaylistsOrdenadas = ordenarPlaylists(jogoPlaylists, ordensCronologicas[jogo])
+            renderizarPlaylists(jogo, jogoPlaylistsOrdenadas)
+        }
     }
 
     // Chama a função principal ao carregar a página

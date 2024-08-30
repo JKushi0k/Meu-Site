@@ -233,14 +233,90 @@ main > div#GTA-playlistsContainer{
     padding: 0 1rem;
 }
 
-.playlistTitle {
-    position: relative;
-    bottom: 0;
-    left: 0;
+div#GTA-playlistsContainer a {
+    text-decoration: none;
+    color: white;
+    transition: color .2s ease-in-out;
+}
+
+div#GTA-playlistsContainer a:hover{
+    color: var(--hoverParaTexto-color);
+}
+
+main > div#HOLLOWKNIGHT-playlistsContainer{
+    display: flex;
+    margin: 0 0 0 6rem;
+    background-color: #131831;
+    padding: 0 1rem;
+}
+
+div#HOLLOWKNIGHT-playlistsContainer a {
+    text-decoration: none;
+    color: white;
+    transition: color .2s ease-in-out;
+}
+
+div#HOLLOWKNIGHT-playlistsContainer a:hover{
+    color: var(--hoverParaTexto-color);
+}
+
+main > div#BATMANARKHAM-playlistsContainer{
+    display: flex;
+    margin: 0 0 0 6rem;
+    background-color: #131831;
+    padding: 0 1rem;
+}
+
+div#BATMANARKHAM-playlistsContainer a {
+    text-decoration: none;
+    color: white;
+    transition: color .2s ease-in-out;
+}
+
+div#BATMANARKHAM-playlistsContainer a:hover{
+    color: var(--hoverParaTexto-color);
+}
+
+main > div#FARCRY-playlistsContainer{
+    display: flex;
+    margin: 0 0 0 6rem;
+    background-color: #131831;
+    padding: 0 1rem;
+}
+
+div#FARCRY-playlistsContainer a {
+    text-decoration: none;
+    color: white;
+    transition: color .2s ease-in-out;
+}
+
+div#FARCRY-playlistsContainer a:hover{
+    color: var(--hoverParaTexto-color);
+}
+
+main > div#ASSASSINSCREED-playlistsContainer{
+    display: flex;
+    margin: 0 0 0 6rem;
+    background-color: #131831;
+    padding: 0 1rem;
+}
+
+div#ASSASSINSCREED-playlistsContainer a {
+    text-decoration: none;
+    color: white;
+    transition: color .2s ease-in-out;
+}
+
+div#ASSASSINSCREED-playlistsContainer a:hover{
+    color: var(--hoverParaTexto-color);
 }
 
 .playlistThumbnail {
     width: 15rem;
+}
+
+main > hr {
+    margin: 1rem 0;
 }
 
 /* Estilização do Footer */
