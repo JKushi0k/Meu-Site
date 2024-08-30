@@ -224,7 +224,7 @@ main{
 }
 
 main > div.text > p {
-    margin-bottom: 1rem;
+    margin: 0 7rem 1rem 7rem;
 }
 
 main > button#loadMore {

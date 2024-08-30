@@ -220,44 +220,27 @@ main{
     position: relative;
     top: 4rem;
     z-index: 0;
-    margin: 0 6.4rem;
 }
 
 main > div.text > p {
     margin: 0 7rem 1rem 7rem;
 }
 
-main > button#loadMore {
-    width: 6rem;
-    height: 2rem;
-    color: var(--corParaTextos-color);
-    background-color: black;
-    border: white .1rem solid;
-    border-radius: .4rem;
-    transition: all .5s ease-in-out;
+main > div#GTA-playlistsContainer{
+    display: flex;
+    margin: 0 0 0 6rem;
+    background-color: #131831;
+    padding: 0 1rem;
 }
 
-.video a {
-    text-decoration: none;
+.playlistTitle {
+    position: relative;
+    bottom: 0;
+    left: 0;
 }
 
-.video h3 {
-    color: white;
-    margin-top: .5rem;
-}
-
-.video img {
-    width: 30rem;
-    height: 17rem;
-    object-fit: cover;
-}
-
-main > button#loadMore:hover {
-    width: 7rem;
-    height: 3rem;
-    color: black;
-    background-color: var(--corParaTextos-color);
-    border: rgb(0, 0, 0) .2rem solid;
+.playlistThumbnail {
+    width: 15rem;
 }
 
 /* Estilização do Footer */
