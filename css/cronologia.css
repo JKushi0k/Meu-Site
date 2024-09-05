@@ -226,9 +226,12 @@ main > div.text > p {
     margin: 0 7rem 1rem 7rem;
 }
 
+.playlistItem{
+    margin: 0 0 0 6rem;
+}
+
 main > div#GTA-playlistsContainer{
     display: flex;
-    margin: 0 0 0 6rem;
     background-color: #131831;
     padding: 0 1rem;
 }
@@ -245,7 +248,6 @@ div#GTA-playlistsContainer a:hover{
 
 main > div#HOLLOWKNIGHT-playlistsContainer{
     display: flex;
-    margin: 0 0 0 6rem;
     background-color: #131831;
     padding: 0 1rem;
 }
@@ -262,7 +264,6 @@ div#HOLLOWKNIGHT-playlistsContainer a:hover{
 
 main > div#BATMANARKHAM-playlistsContainer{
     display: flex;
-    margin: 0 0 0 6rem;
     background-color: #131831;
     padding: 0 1rem;
 }
@@ -279,7 +280,6 @@ div#BATMANARKHAM-playlistsContainer a:hover{
 
 main > div#FARCRY-playlistsContainer{
     display: flex;
-    margin: 0 0 0 6rem;
     background-color: #131831;
     padding: 0 1rem;
 }
@@ -296,7 +296,6 @@ div#FARCRY-playlistsContainer a:hover{
 
 main > div#ASSASSINSCREED-playlistsContainer{
     display: flex;
-    margin: 0 0 0 6rem;
     background-color: #131831;
     padding: 0 1rem;
 }

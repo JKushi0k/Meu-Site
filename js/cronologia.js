@@ -50,46 +50,65 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // Cronologia dos Jogos
-    const apiKey = ''
+    const apiKey = 'AIzaSyACfwGE-Qb25AUHBp99cv4jNLuwCtYo2y4'
     const channelId = 'UCEu8sLYdIu4WRozw-Pdt4mA'
 
     const cacheKey = 'youtubePlaylistCache'
     const cacheExpiratonMs = 60 * 60 * 1000 // 1 hora
 
     // Função para buscar as playlists do canal
-    async function obterPlaylistsDoCanal() {
+    async function obterPlaylistsDoCanal(){
         const cachedData = localStorage.getItem(cacheKey)
         const cacheTimestamp = localStorage.getItem(`${cacheKey}_timestamp`)
 
         // Verifica se o cache está disponível e ainda é válido
         if (cachedData && cacheTimestamp && (Date.now() - cacheTimestamp < cacheExpiratonMs)) {
-            console.log('Usando dados do cache.')
-            return JSON.parse(cachedData);
+            try {
+                const cachedItems = JSON.parse(cachedData)
+
+                if (!Array.isArray(cachedItems) || cachedItems.length == 0) {
+                    throw new Error('Cache inválido ou vazio.')
+                }
+                return data.items.map(item => ({
+                    title: item.snippet.title || 'Sem título',
+                    id: item.id,
+                    thumbnailUrl: item.snippet.thumbnails.maxres ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.high ? item.snippet.thumbnails.high.url : item.snippet.thumbnails.default.url,
+                    videoCount: item.contentDetails?.itemCount || 0
+                }))
+            } catch (error) {
+                console.error("Erro ao obter playlists:", error)
+                localStorage.removeItem(cacheKey);
+                localStorage.removeItem(`${cacheKey}_timestamp`);
+            }
         }
 
-        try {
-            const url = `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${channelId}&maxResults=50&key=${apiKey}`
+        return await obterPlaylistsDaApi()
+    }
 
+    async function obterPlaylistsDaApi() {
+        const url = `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${channelId}&maxResults=50&key=${apiKey}`
+
+        try {
             const response = await fetch(url)
+
+            if (!response.ok) {
+                throw new Error(`Erro ao buscar dados da API: ${response.status}`);
+            }
+
             const data = await response.json()
 
-            if(data.items){
-                localStorage.setItem(cacheKey, JSON.stringify(data.items))
-                localStorage.setItem(`${cacheKey}_timestamp`, Date.now().toString())
-
+            if (data.items && data.items.length > 0) {
                 return data.items.map(item => ({
-                    title: item.snippet.title,
+                    title: item.snippet?.title || 'Sem título',
                     id: item.id,
-                    thumbnailUrl: item.snippet.thumbnails.maxres ? item.snippet.thumbnails.maxres.url :
-                                    item.snippet.thumbnails.high ? item.snippet.thumbnails.high.url :
-                                    item.snippet.thumbnails.default.url
+                    thumbnailUrl: item.snippet?.thumbnails?.high?.url || 'URL padrão para thumbnail',
+                    videoCount: item.contentDetails?.itemCount || 0
                 }))
-            } else {
-                console.error("Nenhuma playlist foi obtida")
-                return []
+            }else {
+                throw new Error('Nenhuma playlist encontrada.')
             }
         } catch (error) {
-            console.error("Erro ao obter playlists:", error)
+            console.error('Erro ao obter playlists da API:', error)
             return []
         }
     }
@@ -100,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         "HOLLOWKNIGHT": ["Hollow Knight"],
 
-        "BATMANARKHAM": ["Batman Arkham Origins"],
+        "BATMANARKHAM": ["Batman Arkham Origins", "Batman Arkham Origins Cold, Cold Heart"],
 
         "FARCRY": ["Far Cry Primal"],
 

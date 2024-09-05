@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     // Aparecer vídeos do Youtube
-    const apiKey    = ''
+    const apiKey    = 'AIzaSyACfwGE-Qb25AUHBp99cv4jNLuwCtYo2y4'
     const channelId = 'UCEu8sLYdIu4WRozw-Pdt4mA'
     const apiUrl    = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=50` // Cararegar até 50 vídeos de uma vez para a cache
 
